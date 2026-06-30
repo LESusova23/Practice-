@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Система ИАРА - Управление</title>
+</head>
+<body>
+    <h1>Регистър на корабите</h1>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Име на кораба" aria-label="Име на кораба" required>
+        <input type="text" name="reg_number" placeholder="Регистрационен номер" aria-label="Регистрационен номер" required>
+        <input type="text" name="captain" placeholder="Капитан" aria-label="Капитан">
+        <button type="submit">Добави кораб</button>
+    </form>
+
+    <hr>
+
+    <ul>
+        {% for ship in ships %}
+            <li>
+                {{ ship.name }} ({{ ship.reg_number }}) - Кап. {{ ship.captain }}
+                <a href="{{ url_for('delete_ship', ship_id=ship.id) }}" 
+                   onclick="return confirm('Сигурни ли сте?')">Изтрий</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
